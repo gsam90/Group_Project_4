@@ -1,4 +1,4 @@
-﻿@model Group_Project.Models.Question
+﻿@model Group_Project.Models.QuestionAnswers
 
 @{
     ViewData["Title"] = "Edit";
@@ -20,29 +20,29 @@
                 <span asp-validation-for="TextOfQuestion" class="text-danger"></span>
             </div>
         <div class="form-group">
-            <label asp-for="PossibleAnswers.Answer1" class="control-label"></label>
-                    <input asp-for="PossibleAnswers.Answer1" class="form-control" />
-                    <span asp-validation-for="PossibleAnswers.Answer1" class="text-danger"></span>
+            <label asp-for="Answer1" class="control-label"></label>
+                    <input asp-for="Answer1" class="form-control" />
+                    <span asp-validation-for="Answer1" class="text-danger"></span>
         </div>
         <div class="form-group">
-                    <label asp-for="PossibleAnswers.Answer2" class="control-label"></label>
-                    <input asp-for="PossibleAnswers.Answer2" class="form-control" />
-                    <span asp-validation-for="PossibleAnswers.Answer2" class="text-danger"></span>
+                    <label asp-for="Answer2" class="control-label"></label>
+                    <input asp-for="Answer2" class="form-control" />
+                    <span asp-validation-for="Answer2" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="PossibleAnswers.Answer3" class="control-label"></label>
-                    <input asp-for="PossibleAnswers.Answer3" class="form-control" />
-                    <span asp-validation-for="PossibleAnswers.Answer3" class="text-danger"></span>
+            <label asp-for="Answer3" class="control-label"></label>
+                    <input asp-for="Answer3" class="form-control" />
+                    <span asp-validation-for="Answer3" class="text-danger"></span>
         </div>
         <div class="form-group">
-                    <label asp-for="PossibleAnswers.Answer4" class="control-label"></label>
-                    <input asp-for="PossibleAnswers.Answer4" class="form-control" />
-                    <span asp-validation-for="PossibleAnswers.Answer4" class="text-danger"></span>
+                    <label asp-for="Answer4" class="control-label"></label>
+                    <input asp-for="Answer4" class="form-control" />
+                    <span asp-validation-for="Answer4" class="text-danger"></span>
         </div>
         <div class="form-group">
-                    <label asp-for="PossibleAnswers.CorrectIndex" class="control-label"></label>
-                    <input asp-for="PossibleAnswers.CorrectIndex" class="form-control" />
-                    <span asp-validation-for="PossibleAnswers.CorrectIndex" class="text-danger"></span>
+                    <label asp-for="CorrectIndex" class="control-label"></label>
+                    <input asp-for="CorrectIndex" class="form-control" />
+                    <span asp-validation-for="CorrectIndex" class="text-danger"></span>
         </div>
                 @*<div class="col-md-10">
                     <label asp-for="Topics.Certificate.Topics" class="control-label"></label>

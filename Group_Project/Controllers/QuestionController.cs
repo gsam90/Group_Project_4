@@ -53,18 +53,18 @@ namespace Group_Project.Controllers
 
 		public  async Task<IActionResult> ListOfQuestions()
 		{
-			return View(await _unitOfWork.Question.GetAllLoadedAs());
+			return View(await _unitOfWork.QuestionAnswers.GetAllQuestionAnswersAs());
 		}
 
 		public async Task<IActionResult> Edit(int id)
 		{
-			return View(await _unitOfWork.Question.GetLoadedAs(id));
+			return View(await _unitOfWork.QuestionAnswers.GetAs(id));
 		}
 
 		[HttpPost]
-		public ActionResult EditSave(Question question)
+		public ActionResult EditSave(QuestionAnswers questionAnswer)
 		{
-			_unitOfWork.Question.Update(question);
+			_unitOfWork.QuestionAnswers.Update(questionAnswer);
 			_unitOfWork.Save();
 			return RedirectToAction("ListOfQuestions");
 		}
@@ -76,29 +76,29 @@ namespace Group_Project.Controllers
 
 		public async Task<IActionResult> DeleteConfirm(int id)
 		{
-			return View(await _unitOfWork.Question.GetLoadedAs(id));
+			return View(await _unitOfWork.QuestionAnswers.GetAs(id));
 		}
 
 		public IActionResult Delete(int id)
 		{
-			_unitOfWork.Question.Delete(_unitOfWork.Question.Get(id));
+			_unitOfWork.QuestionAnswers.Delete(_unitOfWork.QuestionAnswers.Get(id));
 			_unitOfWork.Save();
 			return RedirectToAction("ListOfQuestions");
         }
 
-		public IActionResult Save(Question question)
+		public IActionResult Save(QuestionAnswers questionAnswer)
 		{
 
 			var topic = _unitOfWork.Topic.Get(1);
-			question.Topics = topic;
-			_unitOfWork.Question.Add(question);
+            questionAnswer.Topics = topic;
+			_unitOfWork.QuestionAnswers.Add(questionAnswer);
 			_unitOfWork.Save();
             return RedirectToAction ("Index");
 		}
 
 		public async Task<IActionResult> Details(int id)
 		{
-			return View(await _unitOfWork.Question.GetLoadedAs(id));
+			return View(await _unitOfWork.QuestionAnswers.GetAs(id));
 
         }
 	}

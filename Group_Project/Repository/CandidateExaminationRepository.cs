@@ -22,7 +22,7 @@ namespace Group_Project.Repository
 
         public async Task<IEnumerable<CandidateExamination>> GetAllCandidateExaminationsAs()
         {
-            return await _context.Set<CandidateExamination>().Include(x => x.Candidate).Include(x => x.Certificate).Include(x => x.Topic.Certificate).Include(x => x.QuestionAnswers).ToListAsync();
+            return await _context.Set<CandidateExamination>().Include(x => x.Candidate).Include(x => x.Exam).Include(x => x.ExamQuestion).ToListAsync();
         }
 
         public void UpdateCandidateQuestionAnswer(int? candidateExaminationId, int? answer)

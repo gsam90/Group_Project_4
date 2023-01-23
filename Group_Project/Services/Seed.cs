@@ -166,21 +166,21 @@ namespace Group_Project.Services
 				{
 					Title = "DevOps Topic 1",
 					Description = "This is the first topic for Certificate of DevOps",
-					SubjectWeight = 30,
+					//SubjectWeight = 30,
 					Certificate = certificate1
 				};
 				var topic2Cert1 = new Topic
 				{
 					Title = "DevOps Topic 2",
 					Description = "This is the second topic for Certificate of DevOps",
-					SubjectWeight = 30,
+					//SubjectWeight = 30,
 					Certificate = certificate1
 				};
 				var topic3Cert1 = new Topic
 				{
 					Title = "DevOps Topic 3",
 					Description = "This is the third topic for Certificate of DevOps",
-					SubjectWeight = 40,
+					//SubjectWeight = 40,
 					Certificate = certificate1
 
 				};
@@ -196,21 +196,21 @@ namespace Group_Project.Services
 				{
 					Title = "Python Topic 1",
 					Description = "This is the first topic for Certificate of Python",
-					SubjectWeight = 40,
+					//SubjectWeight = 40,
 					Certificate = certificate2
 				};
 				var topic2Cert2 = new Topic
 				{
 					Title = "Python Topic 2",
 					Description = "This is the second topic for Certificate of Python",
-					SubjectWeight = 30,
+					//SubjectWeight = 30,
 					Certificate = certificate2
 				};
 				var topic3Cert2 = new Topic
 				{
 					Title = "Python Topic 3",
 					Description = "This is the third topic for Certificate of Python",
-					SubjectWeight = 30,
+					//SubjectWeight = 30,
 					Certificate = certificate2
 				};
 
@@ -225,21 +225,21 @@ namespace Group_Project.Services
 				{
 					Title = "Javascript Topic 1",
 					Description = "This is the first topic for Certificate of Javascript",
-					SubjectWeight = 40,
+					//SubjectWeight = 40,
 					Certificate = certificate3
 				};
 				var topic2Cert3 = new Topic
 				{
 					Title = "Javascript Topic 2",
 					Description = "This is the second topic for Certificate of Javascript",
-					SubjectWeight = 35,
+					//SubjectWeight = 35,
 					Certificate = certificate3
 				};
 				var topic3Cert3 = new Topic
 				{
 					Title = "Javascript Topic 3",
 					Description = "This is the third topic for Certificate of Javascript",
-					SubjectWeight = 25,
+					//SubjectWeight = 25,
 					Certificate = certificate3
 				};
 
@@ -248,34 +248,32 @@ namespace Group_Project.Services
 				_unitOfWork.Topic.Add(topic3Cert3);
 				_unitOfWork.Save();
 			}
-			if (_unitOfWork.Question.GetAll().Count() == 0)
+			if (_unitOfWork.QuestionAnswers.GetAll().Count() == 0)
 			{ 
 				var topics = _unitOfWork.Topic.GetAll();
 				foreach (var topic in topics)
 				{
 					for (int i = 1; i < 4; i++)
 					{
-						// Possible answersPython
-						var possibleAnswer = new PossibleAnswers
-						{
-							Answer1 = "This is a generic answer to a question called A1",
+
+                        QuestionAnswers q = new QuestionAnswers
+                        {
+                            // Possible answersPython
+
+                            Answer1 = "This is a generic answer to a question called A1",
 							Answer2 = "This is a generic answer to a question called A2",
 							Answer3 = "This is a generic answer to a question called A3",
 							Answer4 = "This is a generic answer to a question called A4",
-							CorrectIndex = new Random().Next(1, 4)
-						};
-						_unitOfWork.PossibleAnswers.Add(possibleAnswer);
-						_unitOfWork.Save();
+							CorrectIndex = new Random().Next(1, 4),
+
 
 						// Question
 
-						Question q = new Question
-						{
 							TextOfQuestion = $"This is an example of a Question with Number: {i}",
 							Topics = topic,
-							PossibleAnswers = possibleAnswer
+
 						};
-						_unitOfWork.Question.Add(q);
+						_unitOfWork.QuestionAnswers.Add(q);
 						_unitOfWork.Save();
 					}
 				}

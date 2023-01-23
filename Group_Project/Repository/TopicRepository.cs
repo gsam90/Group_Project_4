@@ -13,9 +13,9 @@ namespace Group_Project.Repository
 			_context = context;
 		}
 
-		public void Update(Question question)
+		public void Update(QuestionAnswers questionAnswer)
 		{
-			_context.Update(question);
+			_context.Update(questionAnswer);
 		}
 	}
 }

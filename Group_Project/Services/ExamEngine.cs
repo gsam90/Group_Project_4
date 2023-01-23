@@ -12,7 +12,7 @@ namespace Group_Project.Services
             _unitOfWork = unitOfWork;
         }
 
-        public int ExamEngineResult (ExamQuestions examQuestions)
+        public int ExamEngineResult (ExamQuestion examQuestion)
         {
             return 0;
         }

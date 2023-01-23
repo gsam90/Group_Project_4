@@ -4,12 +4,11 @@
     {
 
         ICandidateRepository Candidate { get; }
-        IQuestionRepository Question { get; }
         ITopicRepository Topic { get; }
         ICertificateRepository Certificate { get; }
-		IPossibleAnswersRepository PossibleAnswers { get; }
         ICandidateExaminationRepository CandidateExamination { get; }
 
+        IExamQuestionRepository ExamQuestion { get; }
         IQuestionAnswersRepository QuestionAnswers { get; }
 		void Save();
     }

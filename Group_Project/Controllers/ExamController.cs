@@ -1,6 +1,7 @@
 ﻿using Group_Project.Models;
 using Group_Project.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Diagnostics;
 
 namespace Group_Project.Controllers
@@ -12,29 +13,38 @@ namespace Group_Project.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<IActionResult> Examzzz()
+        public async Task<IActionResult> Exam()
         {
             var candidate1 = _unitOfWork.Candidate.Get(1);
             var certificate1 = _unitOfWork.Certificate.Get(1);
             var topic1 = _unitOfWork.Topic.Get(1);
-            var allQuestionAnswers = await _unitOfWork.ExamQuestion.GetAllQuestionAnswersAs();
+            var allQuestionAnswers = await _unitOfWork.QuestionAnswers.GetAllQuestionAnswersAs();
+
+            var exam = new Exam() { Certificate = certificate1, ExamDuration = DateTime.Now.AddHours(3) };
+            
+            
             foreach (var questionAnswer in allQuestionAnswers)
             {
-                var exam = new Exam() { Certificate = certificate1, ExamDuration = DateTime.Now.AddHours(3) };
+                var examTopics1 = new ExamTopics
+                {
+                    Topic = topic1,
+                    Exam = exam
+                };
+                var examQuestion1 = new ExamQuestion
+                {
+                    ExamTopics = examTopics1,
+                    QuestionAnswer = questionAnswer
+                };
 
                 var candidateExamination = new CandidateExamination
                 {
                     Exam = exam,
-                    //Exam.Certificate = certificate1,
                     Candidate = candidate1,
-                    //Certificate = certificate1,
-                    //Topic = topic1,
-                    //QuestionAnswers = questionAnswer,
                     CandidateQuestionAnswer = -1,
+                    ExamQuestion = examQuestion1,
                     QuestionResult = -1,
                     ExamStartingTime = DateTime.UtcNow,
                     timestamp = DateTime.UtcNow,
-                    //ExamDuration = DateTime.Now.AddHours(3)
 
                 };
 
@@ -59,14 +69,14 @@ namespace Group_Project.Controllers
             return View(listOfCandidateExamination);
         }
         [HttpPost]
-        public IActionResult Examzz(string id)
+        public IActionResult Exam(string id)
         {
             string[] value = id.Split(',');
             int answer = Int32.Parse(value[0]);
             int CandidateExaminationId = Int32.Parse(value[1]);
             _unitOfWork.CandidateExamination.UpdateCandidateQuestionAnswer(CandidateExaminationId, answer);
             _unitOfWork.Save();
-            return View();
+            return RedirectToPage("Exam");
         }
 
         [HttpPost]

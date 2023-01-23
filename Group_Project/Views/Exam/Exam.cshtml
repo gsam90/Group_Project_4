@@ -24,24 +24,27 @@
                         <label class="fw-bold display-6">@candidateExamination.ExamQuestion.QuestionAnswer.TextOfQuestion</label>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="question@(@numOfQuestions)" id="flexRadioA1" onclick="getA1Rates()" value="@(@numOfQuestions),@(@candidateExamination.Id)" />
+                            <input class="form-check-input" type="radio" name="question@(@numOfQuestions)" id="@(@candidateExamination.Id)" onclick="getA1Rates(@(@candidateExamination.Id))" value="@(@numOfQuestions),@(@candidateExamination.Id)" />
                             <label class="form-check-label" for="formRadioDefault">@candidateExamination.ExamQuestion.QuestionAnswer.Answer1</label>
 
                         </div>
+                        numOfQuestions++;
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="question@(@numOfQuestions)" id="formRadioChecked" checked="">
+                            <input class="form-check-input" type="radio" name="question@(@numOfQuestions)" id="formRadioChecked">
                             <label class="form-check-label" for="formRadioChecked">@candidateExamination.ExamQuestion.QuestionAnswer.Answer2</label>
                         </div>
+                        numOfQuestions++;
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="question@(@numOfQuestions)" id="formRadioDefault">
                             <label class="form-check-label" for="formRadioDefault">@candidateExamination.ExamQuestion.QuestionAnswer.Answer3</label>
                         </div>
+                        numOfQuestions++;
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="question@(@numOfQuestions)" id="formRadioChecked" checked="">
+                            <input class="form-check-input" type="radio" name="question@(@numOfQuestions)" id="formRadioChecked">
                             <label class="form-check-label" for="formRadioChecked">@candidateExamination.ExamQuestion.QuestionAnswer.Answer4</label>
                         </div>
-                        
-                        numOfQuestions++;
+                        numOfQuestions=1;
+
                         
                         
                     }
@@ -55,20 +58,5 @@
 
 @*<script src="~/js/sampleExam.js"></script>
 *@
-<script type="text/javascript">
-    function getA1Rates() {
-        $.ajax({
-            type: "POST",
-            URL: "/ExamController/UpdateQuestionAnswer/",
-            data: { id: $('#flexRadioA1').val() },
-            dataType: "json",
-            success: function (result) {
-                alert("success")
-            },
-            error: function () {
-                alert("failed");
-            }
-        });
-    }
 
-</script>
+<script src="~/js/extra.js"></script>

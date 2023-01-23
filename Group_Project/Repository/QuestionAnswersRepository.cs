@@ -1,4 +1,4 @@
-﻿using Group_Project.Data;
+﻿ using Group_Project.Data;
 using Group_Project.Models;
 using Group_Project.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
@@ -21,5 +21,6 @@ namespace Group_Project.Repository
         {
             return await _context.Set<QuestionAnswers>().Include(x => x.Topics.Certificate).ToListAsync();
         }
+
     }
 }

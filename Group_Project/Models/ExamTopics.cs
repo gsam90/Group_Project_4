@@ -5,6 +5,5 @@
 		public int Id { get; set; }
 		public virtual Topic Topic { get; set; }
 		public virtual Exam Exam { get; set; }
-		public virtual ExamQuestion ExamQuestion { get; set; }
 	}
 }
