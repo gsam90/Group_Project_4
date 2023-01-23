@@ -1,0 +1,74 @@
+﻿@model List<CandidateExamination>
+@{
+    ViewData["Title"] = "Exam";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="row">
+    <div class="col-2">
+        <ul class="nav flex-column float-start nav-pills" id="questionsButtons">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#form1">Question 1</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-10" id="questionBody">
+        <div class="tab-content">
+            <div class="tab-pane active" id="form1">
+                <form asp-action="UpdateQuestionAnswer" method="post">
+                    @{
+                        var numOfQuestions = 1;
+                    }
+                    @foreach (var candidateExamination in Model)
+                    {
+                        <label class="fw-bold display-6">@candidateExamination.ExamQuestion.QuestionAnswer.TextOfQuestion</label>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="question@(@numOfQuestions)" id="flexRadioA1" onclick="getA1Rates()" value="@(@numOfQuestions),@(@candidateExamination.Id)" />
+                            <label class="form-check-label" for="formRadioDefault">@candidateExamination.ExamQuestion.QuestionAnswer.Answer1</label>
+
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="question@(@numOfQuestions)" id="formRadioChecked" checked="">
+                            <label class="form-check-label" for="formRadioChecked">@candidateExamination.ExamQuestion.QuestionAnswer.Answer2</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="question@(@numOfQuestions)" id="formRadioDefault">
+                            <label class="form-check-label" for="formRadioDefault">@candidateExamination.ExamQuestion.QuestionAnswer.Answer3</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="question@(@numOfQuestions)" id="formRadioChecked" checked="">
+                            <label class="form-check-label" for="formRadioChecked">@candidateExamination.ExamQuestion.QuestionAnswer.Answer4</label>
+                        </div>
+                        
+                        numOfQuestions++;
+                        
+                        
+                    }
+                    <button type="submit" class="btn btn-primary">Submit Answers</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script src="~/js/sampleExam.js"></script>
+*@
+<script type="text/javascript">
+    function getA1Rates() {
+        $.ajax({
+            type: "POST",
+            URL: "/ExamController/UpdateQuestionAnswer/",
+            data: { id: $('#flexRadioA1').val() },
+            dataType: "json",
+            success: function (result) {
+                alert("success")
+            },
+            error: function () {
+                alert("failed");
+            }
+        });
+    }
+
+</script>

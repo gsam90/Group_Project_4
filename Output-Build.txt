@@ -1,0 +1,4 @@
+﻿Clean started...
+1>------ Clean started: Project: Group_Project, Configuration: Debug Any CPU ------
+========== Clean: 1 succeeded, 0 failed, 0 skipped ==========
+========== Elapsed 00:00,543 ==========
